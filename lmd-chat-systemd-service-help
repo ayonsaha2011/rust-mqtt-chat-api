@@ -1,0 +1,26 @@
+make "/etc/systemd/system/lmd-chat.service" and write content in it similar to
+
+-----------------------code block------------------------------------------
+
+[Unit]
+Description=lmd-chat api server on rust actix web 
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/home/asaha/projects/chat2api_repo/code/rust-chat-server/
+Environment="ACTIX_ENV=dev"
+Environment="APP_HOST=0.0.0.0"
+Environment="APP_PORT=3002"
+ExecStart=/home/asaha/projects/chat2api_repo/code/rust-chat-server/target/release/rust-chat-server
+
+[Install]
+WantedBy=multi-user.target
+
+-----------------------code block end------------------------------------------
+
+
+sudo systemctl start lmd-chat.service
+sudo systemctl status lmd-chat.service
+sudo systemctl stop lmd-chat.service
+sudo systemctl restart lmd-chat.service
